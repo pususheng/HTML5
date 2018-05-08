@@ -1,0 +1,548 @@
+
+/*===========
+	弹窗
+ =============*/
+.header1 {
+	background: rgba(255,255,255,0.97);
+}
+/*@加入购物车弹窗*/
+
+.addcar{
+	width:100%; height: 7.7rem;
+	z-index:19891015;
+}
+.addcar .H20 {
+	background-color: rgba(0,0,0,.3);
+}
+
+	/* title */
+
+.addcar-tit{
+	position: relative;
+	height: 2rem;
+	padding-top: .4rem;
+	line-height:.45rem;
+	background:#fff;
+}
+.addcar-tit img{
+	float:left; 
+	width:3rem; height: 3rem;
+	margin: -1.4rem .3rem 0;
+	border:1px solid rgba(0,0,0,.1);
+	border-radius: 4px;
+}
+.addcar-tit .sold-out {
+	position: absolute;
+	left: .9rem; top: -.2rem;
+	width: 1.8rem; height: 1.8rem;
+	line-height: 1.8rem;
+	background: rgba(0,0,0,.3);
+	border-radius: 1.8rem;
+	color: #fff;
+	text-align: center;
+}
+.addcar-tit p{
+	float:left;
+	width: 3.5rem;
+	color:#666;
+	font-size:.26rem;
+	line-height:0.4rem;
+}
+.addcar-tit .money{
+	height: .3rem;
+	margin-bottom: .1rem;
+	line-height: .3rem;
+	color:#ff7198;
+	font-size:.32rem; 
+}
+.addcar-tit .box1 {
+	margin-right: .1rem;
+}
+.addcar-tit .tag1 {
+	margin-top: .1rem;
+}
+.addcar-tit .tag1 .box1 {
+	color: #d09852;
+	border: 1px solid #d09852;
+}
+.addcar-tit .selected {
+	margin-top: .1rem;
+	line-height: .28rem;
+}
+.addcar-tit .DEL {
+	font-size: .24rem;
+	padding-left: .1rem;
+}
+.addcar .wrap {
+	height: 4.6rem;
+	overflow: scroll;
+}
+
+	/* spec */
+.addcar .spec{
+	background:#fff;
+	padding: .1rem .4rem 0;
+}
+.addcar .spec p{
+	font-size:0.26rem;
+	font-weight:normal;
+	margin-bottom:0.14rem;
+	color:#666;
+}
+.addcar .spec ul{
+	overflow:auto;
+	padding-bottom: .2rem;
+}
+.addcar .spec ul li{
+	float:left;
+	height:.5rem; line-height:.5rem;
+	padding:0 .2rem;
+	margin: .1rem .14rem .1rem 0;
+	text-align:center;
+	font-size:0.24rem;
+	border-radius:6px;
+	border:1px solid #999;
+	cursor: pointer;
+	color: #555;
+}
+.addcar .spec ul .on{
+	color:#e82b5f;
+	border:1px solid #e82b5f;
+}
+.addcar .spec ul .no {
+	color:#999;
+	border:1px solid #999;
+}
+
+	/* num */
+.addcar .num{
+	height: 1.2rem; line-height: 1.2rem;
+	padding: 0 .4rem;
+	border-top:1px solid rgba(0,0,0,.1);
+	background: #fff;
+}
+.addcar .inventory{
+	margin-left: .1rem;
+	color:#9fa0a0;
+}
+.addcar .num>span{
+	float:left;
+	display:block;
+	color:#999;
+	font-size:.26rem;
+}
+.addcar .numbox {
+	float: right;
+	margin-right: .2rem;
+	background: #fff;
+	border: none;
+}
+.numbox .add,
+.numbox .subt{
+	width:.5rem; height:.5rem; 
+	line-height:.5rem; 
+	border:1px solid #777;
+	background:#fff; 
+	color:#000;
+	border-radius:6px;
+	font-size:0.24rem;
+}
+.numbox .subt {
+	color: #e0e0e0;
+	border: 1px solid #e0e0e0;
+}
+
+.addcar .numbox .numbox-input{ 
+	width:0.8rem; height:.5rem;
+	border:none; 
+	border-radius:6px; 
+	font-size:.28rem; 
+	color:#333; 
+	line-height:.5rem;
+	text-align: center;
+	background: #fff;
+}
+.addcar .btns {
+	position: fixed;
+	bottom: 0;
+	width: 100%; height: .98rem;
+	text-align: center;
+}
+.addcar .btns button {
+	width: 100%; height: .98rem;
+	background:url(../images/detail_car_red@3x.png) no-repeat;
+	text-align:center;
+	line-height: .98rem;
+	color:#fff;
+	font-size:.32rem;
+	border: none;
+}
+.addcar .no button {
+	background:url(../images/detail_car_gray@3x.png) no-repeat;
+}
+
+/* @退货理由 */
+.refund-pop {
+	padding: .3rem;
+}
+.refund-pop p {
+	text-align: center;
+	line-height: .52rem;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.refund-pop p:last-child {
+	border-bottom: none;
+}
+
+/* @提示弹窗 */
+.btn-pop {
+	width: 5.6rem;
+	margin: auto;
+	text-align: center;
+}
+.btn-pop p {
+	margin-top: .28rem;
+}
+.btn-pop .pop-btn1 {
+	width: 2.3rem; height: .7rem;
+	margin: .48rem .1rem;
+	background: #fff;
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius: 4px;
+}
+.btn-pop .active {
+	border: none;
+	background: #ff7198;
+	color: #fff;
+}
+
+/* @税费弹窗 */
+.tax-pop li {
+	height: .9rem;
+	padding: 0 .36rem;
+	font-size: .28rem;
+	border-bottom: 1px solid rgba(0,0,0,.1)
+}
+.tax-pop li p {
+	line-height: .84rem;
+}
+.tax-pop li:last-child p {
+	color: #ff7198;
+}
+
+/* @本文商品 */
+
+.art-pop { margin: 0 .28rem; }
+.art-pop .unit .box1 {
+	margin-left: .12rem;
+}
+.art-pop .unit .cart {
+	position: absolute;
+	bottom: .06rem; right: 0;
+}
+.art-pop .unit .cart img {
+	width: .74rem; height: .74rem;
+}
+
+/* @ layer-msg 弹层样式 */
+.layer-msg .layui-m-layercont {
+	padding: .16rem .3rem;
+}
+
+
+/* @ 兑换优惠券弹窗 */
+.coupon-pop{
+	text-align: center;
+}
+.coupon-pop h6 {
+	margin-top: .8rem;
+	font-size: .36rem;
+	color: #222;
+}
+.coupon-pop input[type="text"]{
+	width: 4.84rem; height: .66rem;
+	margin: .3rem 0 .4rem;
+	line-height: .66rem;
+	text-indent: 6px;
+	border: 1px solid #999;
+	border-radius: 4px;
+}
+.coupon-pop .pop-wrap {
+	border-top: 1px solid #eee;
+}
+.coupon-pop .pop-wrap input{
+	width: 46%; height: 1rem;
+	line-height: 1rem;
+	background: #fff;
+	font-size: .32rem;
+	color: #666;
+}
+.coupon-pop .pop-wrap input:last-child{
+	border-left: 1px solid #eee;
+	color: #ff7198;
+}
+
+/* @联系我们 */
+.connect {
+	height: 3.6rem;
+	background: #fff;
+	text-align: center;
+}
+.connect h3 {
+	padding: 0;
+	margin-top: .6rem;
+}
+.connect p {
+	color: #999;
+	font-size: .24rem;
+}
+.connect .connect-btn {
+	height: 1.1rem;
+	margin-top: .8rem;
+	border-top: 1px solid #eee;
+}
+.connect .connect-btn a {
+	float: left;
+	height: 1.1rem; width: 49%;
+	line-height: 1.1rem;
+	font-size: .3rem;
+}
+.connect .connect-btn .call {
+	border-left: 1px solid #eee;
+	color: #ff7198;
+}
+
+/* @设置昵称 */
+.name-pop{
+	text-align: center;
+}
+.name-pop h6 {
+	margin-top: .8rem;
+	font-size: .36rem;
+	color: #222;
+}
+.name-pop input[type="text"]{
+	width: 4.84rem; height: .66rem;
+	margin: .3rem 0 .4rem;
+	line-height: .66rem;
+	text-indent: 6px;
+	border: 1px solid #999;
+	border-radius: 4px;
+}
+.name-pop .pop-wrap {
+	border-top: 1px solid #eee;
+}
+.name-pop .pop-wrap input{
+	width: 46%; height: 1rem;
+	line-height: 1rem;
+	background: #fff;
+	font-size: .32rem;
+	color: #666;
+}
+.name-pop .pop-wrap input:last-child{
+	border-left: 1px solid #eee;
+	color: #ff7198;
+}
+
+/* 设置生日 */
+.birth-pop{
+	text-align: center;
+}
+.birth-pop h6 {
+	margin-top: .8rem;
+	font-size: .36rem;
+	color: #222;
+}
+.birth-pop input[type="text"]{
+	width: 1.2rem; height: .56rem;
+	margin: .3rem 0 .4rem;
+	line-height: .56rem;
+	text-indent: 6px;
+	border: 1px solid #999;
+	border-radius: 4px;
+}
+.birth-pop .pop-wrap {
+	border-top: 1px solid #eee;
+}
+.birth-pop .pop-wrap input{
+	width: 46%; height: 1rem;
+	line-height: 1rem;
+	background: #fff;
+	font-size: .32rem;
+	color: #666;
+}
+.birth-pop .pop-wrap input:last-child{
+	border-left: 1px solid #eee;
+	color: #ff7198;
+}
+
+/* 性别设置, 肤质设置 */
+
+.pop-list-title {
+	margin: 0 .3rem;
+	height: .7rem; line-height: .7rem;
+	color: #999;
+}
+.pop-list li {
+	height: 1rem; line-height: 1rem;
+	text-align: center;
+	border-top: 1px solid #eee;
+}
+
+
+
+/* 详情页 服务说明 */
+.server-pop {
+	position: relative;
+	height: 8.16rem;
+	overflow: scroll;
+}
+.server-pop h1 {
+	position: fixed;
+	top: 0;
+	width: 6.7rem; height: 1.2rem;
+	line-height: 1.2rem;
+	margin: 0 .4rem;
+	text-align: center;
+	font-size: .32rem;
+	border-bottom: 1px solid #eee;
+	background: #fff;
+	z-index: 99;
+}
+.server-pop .con {
+	padding: .2rem .6rem .2rem 1rem;
+	margin: 1.2rem 0 1rem;
+}
+.server-pop .con p {
+	color: #888;
+}
+.server-pop .con .item {
+	margin: .4rem 0;
+}
+.server-pop .con .item .title {
+	position: relative;
+	font-size: .28rem;
+	color: #444;
+}
+.server-pop .con .item .dot {
+	position: absolute;
+	left: -.3rem; top: .18rem;
+	width: .1rem; height: .1rem;
+	background: #ff7fa2;
+	border-radius: .1rem;
+}
+.server-pop .close {
+	position: fixed;
+	bottom: 0;
+	width: 6.7rem; height: .98rem;
+	line-height: .98rem;
+	margin: 0 .4rem;
+	text-align: center;
+	border-top: 1px solid #eee;
+	background: #fff;
+	z-index: 99;
+}
+
+/* 确认订单 税费运费弹窗 */
+.deliver-pop .wrap {
+	margin: 0 .5rem;
+	padding: .44rem 0;
+	border-bottom: 1px solid #ccc;
+}
+.deliver-pop .wrap p {
+	height: .6rem;
+	line-height: .6rem;
+	color: #999;
+}
+.deliver-pop .wrap .title {
+	color: #666;
+}
+.deliver-pop .wrap .title .FR {
+	color: #999;
+}
+.deliver-pop .wrap .tit img {
+	width: .3rem;
+	margin-right: .2rem;
+	position: relative;
+	top: .04rem;
+}
+.deliver-pop .wrap .tag {
+	margin-left: .3rem;
+	padding: .04rem .12rem;
+	font-size: .2rem;
+	border: 1px solid #999;
+	color: #999;
+	border-radius: 4px;
+}
+.deliver-pop .wrap .item {
+	padding: .2rem 0;
+	border-bottom: 1px solid #eee;
+}
+.deliver-pop .wrap .item:last-child {
+	border-bottom: none;
+}
+
+
+/* @ 实名认证 */
+.id-pop{
+	text-align: center;
+}
+.id-pop h6 {
+	margin-top: .4rem;
+	margin-bottom: .2rem;
+	font-size: .36rem;
+	color: #222;
+}
+.id-pop p {
+	margin: 0 .4rem;
+	text-align: left;
+}
+.id-pop input[type="text"]{
+	width: 4.84rem; height: .66rem;
+	margin: .2rem 0;
+	line-height: .66rem;
+	text-indent: 6px;
+	border: 1px solid #999;
+	border-radius: 4px;
+}
+.id-pop .pop-wrap {
+	margin-top: .2rem;
+	border-top: 1px solid #eee;
+}
+.id-pop .pop-wrap input{
+	width: 46%; height: 1rem;
+	line-height: 1rem;
+	background: #fff;
+	font-size: .32rem;
+	color: #666;
+}
+.id-pop .pop-wrap input:last-child{
+	border-left: 1px solid #eee;
+	color: #ff7198;
+}
+/*.pay-guide {
+	position: absolute;
+	left: 0; top: 0;
+}*/
+.pay-guide img {
+	width: 4.16rem; height: 2.5rem;
+}
+
+/* 新人大礼包 */
+.new-user {
+	position: relative;
+}
+.new-user img {
+	display: block;
+	width: 5.8rem;
+}
+.new-user .close0 {
+	position: absolute;
+	left: 2.55rem; top: .7rem;
+	width: .7rem; height: .7rem;
+}
+.new-user .close1 {
+	position: absolute;
+	left: 5.5rem; bottom: .5rem;
+	width: .3rem; height: .3rem;
+}

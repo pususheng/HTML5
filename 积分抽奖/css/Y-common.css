@@ -1,0 +1,149 @@
+/*====================
+ 	@@初始化 initial
+=====================*/
+* { margin:0; padding:0; box-sizing: border-box;}
+body {
+	width:100%;
+	color: #333;
+	background-color: #fff;
+	font-size: .24rem;
+	font-family: 'PingFang SC Regular', '微软雅黑', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+ul,li { list-style:none; }
+a { text-decoration:none; color:#666; -webkit-highlight-color: rgba(0,0,0,0); }
+p { color:#333; max-height: 100%; }
+h1,h2,h3,h4,h5,h6 { font-size:inherit; font-weight:normal; }
+input,textarea { border:none; outline:none; font-family:inherit; font-size: .24rem; color:#333; }
+button { outline: none; }
+/* 输入框 */
+input[type='button'], input[type='submit'],
+input[type='reset'], button {
+	-webkit-transition-duration: 0s;
+	vertical-align: middle;
+	text-align: center;
+}
+/*placeholder样式颜色*/
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder { 
+	color: #9fa0a0; 
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder { 
+	color: #9fa0a0; 
+}
+input::-ms-input-placeholder,
+textarea::-ms-input-placeholder { 
+	color: #9fa0a0; 
+}
+::-webkit-scrollbar{ width:4px; height:4px; }
+
+/*===================
+	@@全站公用样式
+===================== */
+.icon{
+    font-family: Muiicons;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+}
+.FL { float: left; }
+.FR { float: right; }
+.clearfix:after {
+	display: block;
+	content: '.';
+	clear: both;
+	line-height: 0;
+	visibility: hidden;
+}
+/* 高度 */
+.H10{ height: .2rem;}
+.H20{ height: .4rem;}
+.H30{ height: .6rem;}
+.H50{ height: 1rem;}
+/* 背景色 */
+.BG-EEE{ background: #EEEEEE;}
+.BG-FB { background: #fbfbfb; }
+/* 颜色 */
+.COR1{ color:#333;}
+.COR2{ color:#4886f6;}
+.COR3{ color:#f85656;}
+.COR4{ color:#999;}
+.COR5{ color:#FF7198;}
+.COR6{ color:#666;}
+.COR7{ color:#00bb66;}
+/* 其他 */
+.DEL{
+	color: #999;
+	text-decoration: line-through;
+}
+.TL{ text-align:left;}
+.TR{ text-align:right;}
+.TC{ text-align:center;}
+
+.one-line {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.two-line {
+	display: -webkit-box;
+	-webkit-line-clamp:2;
+	-webkit-box-orient:vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* dot-input 圆点 选中 */
+input[type=checkbox].dot-input,
+input[type=radio]{
+	position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    width: .4rem; height: .4rem;
+    margin: 0;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: .2rem;
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0,.1);
+}
+input[type=checkbox].dot-input:checked,
+input[type=radio]:checked {
+    border: none;
+}
+input[type=checkbox].dot-input:checked:before,
+input[type='radio']:checked:before{
+	position: relative;
+	top:.04rem;
+	content: "\e635";
+	color: #ff7198;
+	font-size: .38rem;
+}
+
+/* checkbox 默认 打钩 */
+input[type=checkbox]{
+	position: relative;
+    -webkit-appearance: none;
+    appearance: none;
+    width: .4rem; height: .4rem;
+    margin: 0;
+    vertical-align: middle;
+    background: #fff;
+    border-radius: .2rem;
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0,.1);
+}
+input[type=checkbox]:checked {
+    border: none;
+}
+input[type='checkbox']:checked:before{
+	position: relative;
+	top:.04rem;
+	content:'\e637';
+	color: #ff7198;
+	font-size: .38rem;
+}

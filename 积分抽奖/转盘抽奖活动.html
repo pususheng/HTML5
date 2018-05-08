@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>我的积分</title>
+	<link rel="stylesheet" href="css/Y-common.css">
+	<link rel="stylesheet" href="css/page-score.css">
+	<script src="JS/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<script src="JS/layer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="JS/Y-common.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+	<!-- mian -->
+	<div class="lottery content">
+
+		<img src="images/lottery/drawback1@3x.png" />
+		<img src="images/lottery/drawback2@3x.png" />
+		<img src="images/lottery/drawback3@3x.png" />
+		<div class="award">
+			<img src="images/lottery/drawback4@3x.png" />
+			<img src="images/lottery/drawback5@3x.png" />
+			<div class="text">
+				<div class="wrap">
+					<h6 class="active">1恭喜186****2329用户抽中50元商品</h6>
+					<h6>2恭喜186****2329用户抽中五等奖</h6>
+					<h6>3恭喜186****2329用户抽中三等奖</h6>
+					<h6>4恭喜186****2329用户抽中四等奖</h6>
+					<h6>5恭喜186****2329用户抽中50积分</h6>
+					<h6>6恭喜186****2329用户抽中二等奖</h6>
+					<h6>7恭喜186****2329用户抽中一只青蛙</h6>
+				</div>
+				<p class="user-score">
+					xxx 用户当前可用积分:
+					<span>750 积分</span>
+				</p>
+				<dl>
+					<dt>奖项说明</dt>
+					<dd class="title">
+						<span class="s1">奖项</span>
+						<span class="s2">奖品</span>
+						<span class="s3">概率</span>
+					</dd>
+					<dd>
+						<span class="s1">一等奖</span>
+						<span class="s2">iphoneX 64G一台</span>
+						<span class="s3">0.001%</span>
+					</dd>
+					<dd>
+						<span class="s1">二等奖</span>
+						<span class="s2">Marcheur粉底液一支</span>
+						<span class="s3">4.999%</span>
+					</dd>
+					<dd>
+						<span class="s1">三等奖</span>
+						<span class="s2">牛乳石碱沐浴露一瓶</span>
+						<span class="s3">6.5%</span>
+					</dd>
+					<dd>
+						<span class="s1">四等奖</span>
+						<span class="s2">197减17元优惠券</span>
+						<span class="s3">8.5%</span>
+					</dd>
+					<dd>
+						<span class="s1">五等奖</span>
+						<span class="s2">97减7元优惠券</span>
+						<span class="s3">10%</span>
+					</dd>
+					<dd>
+						<span class="s1">六等奖</span>
+						<span class="s2">50积分</span>
+						<span class="s3">20%</span>
+					</dd>
+					<dd>
+						<span class="s1">七等奖</span>
+						<span class="s2">5积分</span>
+						<span class="s3">20%</span>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="rule">
+			<img src="images/lottery/drawback6@3x.png" />
+			<div class="wrap">
+				<p>1、每次抽奖将耗费10积分。</p>
+				<p>2、抽奖所得的优惠券、积分等虚拟奖品，将实时发放至您的账户。</p>
+				<p>3、优惠券使用期限以券面为准，您可在“我的”中查看积分及优惠券。</p>
+				<p>4、抽奖所得的实物奖品，将在您提交收货信息后10个工作日内发出。</p>
+				<p>5、抽中的奖品不支持退换货。</p>
+				<p>6、奖项奖品将不定期变更，本抽奖活动与Apple Inc公司无关。</p>
+				<p>7、如在抽奖过程中有任何疑问，可联系客服。</p>
+			</div>
+		</div>
+		
+		<img style="display: none;" src="images/lottery/plate.png" />
+		<img style="display: none;" src="images/lottery/pointer.png" />
+
+		<input class="begin" type="button" value="" />
+		<canvas id="canvas" width="375" height="375"></canvas>
+
+	</div>
+
+<script>
+$(function(){
+
+	var canvas = document.getElementById('canvas'),
+		cv = canvas.getContext('2d'),
+		width = document.documentElement.clientWidth,
+		height = document.documentElement.clientHeight,
+		imgPlate = new Image(),
+		imgPointer = new Image(),
+		timer = null,
+		L = 8,   // 抽奖份数
+		speed = 200,
+		rotate = -90 -180/L; //旋转角度
+
+		imgPlate.src = 'images/lottery/plate.png';
+		imgPointer.src = 'images/lottery/pointer.png';
+
+		// 设置画布大小
+		canvas.setAttribute('width', width);
+		canvas.setAttribute('height', width);
+
+	function cta( Ang ){
+		return (Ang/360*2*Math.PI);
+	}
+	function draw(){
+
+		// 绘制图片
+		cv.save();
+		cv.scale( 0.5, 0.5 )
+		cv.translate( width, width )
+		cv.rotate( cta(rotate) )
+		cv.translate( -width, -width )
+		cv.drawImage( imgPlate, 0, 0, 2*width, 2*width)
+		cv.restore()
+
+		cv.save()
+		cv.scale( 0.5, 0.5 )
+		cv.drawImage( imgPointer, width-100, width-132 )
+		cv.restore();
+	}
+
+	draw()
+
+	function toRotate( award ){
+
+		if( !timer ){
+
+			var target = 360/L*( award )+110+180/L;
+
+			timer = setInterval( function(){
+
+				if( rotate > 3600 -target ){
+					speed -=1;
+				}
+				if( speed <=0 ){
+					speed = 0;
+					clearInterval( timer );
+					setTimeout(function(){
+						resultPop();
+					}, 1000)
+				}
+				rotate += Math.ceil(speed/20);
+				draw();
+			}, 10 )
+		}else {
+			return;
+		}
+	};
+
+	function resultPop (){
+		layer.open({
+			type:1,  // 层类型. 0: 信息框, 1:页面层,
+            title:'中奖结果',
+            shadeClose: false,
+            style: 'padding: 0;',
+            content:'<div class="result-pop">\
+				        <p>中了个奖吧</p>\
+				        <input class="sure" type="button" value="知道了" />\
+				    </div>'
+			});
+	}
+
+	$('.begin').on('click', function(){
+		toRotate(L-2);
+	})
+
+	$('.sure').live('click', function(){
+		timer = null;
+		rotate = -90 -180/L;
+		speed = 200;
+		draw();
+		layer.closeAll();
+	})
+
+	var length = $('.wrap h6').length,
+		index = 0,
+		timer1 = setInterval(function(){
+
+		if( index<length-1 ){
+			index ++;
+		}else{
+			index = 0;
+		}
+		$('.wrap h6').hide().eq( index ).show()
+		
+	}, 2500)
+})
+
+</script>
+
+</body>
+</html>

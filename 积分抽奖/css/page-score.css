@@ -1,0 +1,117 @@
+/*
+ * page-score
+ * varstion 2.0.0
+ * by Hu
+ */
+
+/* 积分抽奖 */
+.lottery img {
+	display: block;
+	width: 100%;
+}
+#canvas {
+	position: absolute;
+	top: 4.6rem;
+}
+.rule {
+	position: relative;
+}
+.rule .wrap {
+	position: absolute;
+	top: .9rem;
+	margin: 0 .4rem;
+}
+.rule .wrap p {
+	line-height: .32rem;
+	font-size: .2rem;
+	color: #ffcc00;
+}
+.award { position: relative; }
+.award .text {
+	position: absolute;
+	top: .46rem;
+	width: 100%;
+	color: #fff;
+}
+.award .text .wrap {
+	height: .4rem;
+	overflow: hidden;
+}
+.award .text h6 {
+	display: none;
+	padding-left: .4rem;
+	line-height: .4rem;
+	font-size: .22rem;
+	text-align: center;
+}
+.award .text h6.active {
+	display: block;
+}
+.award .text .user-score {
+	margin: .52rem 0 0 .4rem;
+	color: #ffae00;
+}
+.award .text .user-score span {
+	color: #fff;
+}
+
+.award .text dl {
+	margin: .6rem 1.3rem 0;
+}
+.award .text dt {
+	font-size: .32rem;
+	text-align: center;
+	content: #ffae00;
+}
+.award .text dd {
+	font-size: 0;
+}
+.award .text dd span {
+	display: inline-block;
+	height: .45rem;
+	line-height: .45rem;
+	font-size: .22rem;
+}
+.award .text .s1 {
+	width: 1.2rem;
+}
+.award .text .s2 {
+	width: 2.8rem;
+}
+.award .text .s3 {
+	width: .9rem;
+	text-align: right;
+}
+.award .text .title {
+	margin: .4rem 0 .08rem;
+}
+.award .text .title span {
+	font-size: .28rem;
+	color: #ffae00;
+}
+.begin {
+	position: absolute;
+	opacity: 0;
+	top: 8.4rem; left: 2.8rem;
+	width: 2rem; height: 2rem;
+	z-index: 99;
+}
+
+/* 抽奖结果弹窗 */
+
+.result-pop {
+	width: 5.6rem;
+	margin: auto;
+	text-align: center;
+}
+.result-pop p {
+	margin-top: .2rem;
+}
+.result-pop .sure{
+	width: 2.3rem; height: .7rem;
+	margin: .3rem .1rem;
+	background: #ff7198;
+	color: #fff;
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius: 4px;
+}
