@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>point</title>
+
+<!-- 顶点着色器 -->
+<script id = "vs" type="x-shader/x-vertex">
+  attribute vec4 a_Position;
+  attribute float a_PointSize;
+  void main () {
+    gl_Position = a_Position;
+    gl_PointSize = a_PointSize;
+  }
+</script>
+
+<!-- 片段着色器 -->
+<script id = "fs"  type="x-shader/x-fragment">
+  precision mediump float;
+  uniform vec4 u_FragColor;
+  void main() {
+    gl_FragColor = u_FragColor;
+  }
+</script>
+</head>
+<body>
+<p>使用多个buffer，一次性绘制多个不同大小的点。</p>
+<canvas id="canvas" width="600" height="600"></canvas>
+
+<script>
+
+window.onload = function(){
+
+  var c = document.getElementById('canvas');
+  var gl = c.getContext('webgl');
+
+  // 初始化
+  gl.clearColor( 0.0, 0.0, 0.0, 1.0 )
+  gl.clear( gl.COLOR_BUFFER_BIT );
+
+  // 获取元素
+  var vs = document.getElementById('vs');
+  var fs = document.getElementById('fs')
+
+  // initShader
+  var v_shader = initShader('vs');
+  var f_shader = initShader('fs');
+
+  // initProgram
+  var program = initProgram( v_shader, f_shader );
+
+  // 设置颜色
+  var u_FragColor = gl.getUniformLocation( program, 'u_FragColor' )
+  var color = [1.0, 0.0, 0.0, 1.0]
+  gl.uniform4fv( u_FragColor, color )
+
+  // 使用缓冲区，一次绘制多点
+  var vertexBuffer = gl.createBuffer();
+
+  // 将缓冲区对象绑定到目标上
+  gl.bindBuffer( gl.ARRAY_BUFFER, vertexBuffer );
+
+  // 准备点的位置信息
+  var data = new Float32Array([
+    0, 0.5,
+    -0.5, 0,
+    0.5, 0 
+  ])
+
+  // 向缓冲区写入数据
+  gl.bufferData( gl.ARRAY_BUFFER, data, gl.STATIC_DRAW )
+
+  // 分配缓冲区对象
+  var a_Position = gl.getAttribLocation( program, 'a_Position' );
+  gl.vertexAttribPointer( a_Position, 2, gl.FLOAT, false, 0, 0 )
+
+  // 开启 attribute
+  gl.enableVertexAttribArray( a_Position );
+
+  // 准备点的大小信息
+  var sizes = new Float32Array([
+    6.0, 10.0, 16.0
+  ])
+
+  var sizeBuffer = gl.createBuffer();
+
+  gl.bindBuffer( gl.ARRAY_BUFFER, sizeBuffer )
+
+  gl.bufferData( gl.ARRAY_BUFFER, sizes, gl.STATIC_DRAW );
+
+  var a_PointSize = gl.getAttribLocation( program, 'a_PointSize' );
+  gl.vertexAttribPointer( a_PointSize, 1, gl.FLOAT, false, 0, 0 );
+  gl.enableVertexAttribArray( a_PointSize );
+
+  // 绘制三角形
+  gl.drawArrays( gl.POINTS, 0, 3 );
+
+
+  /*
+    *  @param id 存在 html 模板中的 GLSL
+    *  @ return 一个编译完成的着色器
+   */
+  function initShader(id){
+    var shader;
+    var el = document.getElementById(id);
+    // 生成着色器
+    switch( el.type ){
+      // 顶点着色器
+      case 'x-shader/x-vertex':
+        shader = gl.createShader( gl.VERTEX_SHADER )
+        break;
+
+      case 'x-shader/x-fragment':
+        shader = gl.createShader( gl.FRAGMENT_SHADER )
+        break;
+
+      default: 
+        return;
+    }
+    // 传入 GLSL
+    gl.shaderSource( shader, el.text );
+    // 编译
+    gl.compileShader( shader )
+    // 检测
+    if( gl.getShaderParameter( shader, gl.COMPILE_STATUS ) ){
+      return shader;
+    } else {
+      alert( gl.getShaderInfoLog( shader ) )
+    }
+  }
+
+  /*
+   *  @param  shader
+   *  @return program
+   */
+  function initProgram( vs, fs ) {
+
+    var program = gl.createProgram();
+
+    // 为程序绑定 shader
+    gl.attachShader( program, vs )
+    gl.attachShader( program, fs )
+
+    // 连接模板
+    gl.linkProgram( program );
+
+    // 检查状态
+    if ( gl.getProgramParameter( program, gl.LINK_STATUS ) ){
+
+      // 使用 当前prgram
+      gl.useProgram( program );
+      return program;
+    }else {
+      alert('初始化程序错误');
+    }
+  }
+
+}
+</script>
+
+</body>
+</html>
