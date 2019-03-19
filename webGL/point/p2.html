@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 顶点着色器 -->
+<script id="vs" type="x-shader/x-vertex">
+  attribute vec4 aPosition;
+  attribute float aPointSize;
+  void main (){
+    gl_Position = aPosition;
+    gl_PointSize = aPointSize;
+  }
+</script>
+
+<!-- 片元着色器 -->
+<script id="fs" type="x-shader/x-fragment">
+  precision mediump float;
+  uniform vec4 uFragColor;
+  void main (){
+    gl_FragColor = uFragColor;
+  }
+</script>
+
+<!-- 绘图区 -->
+<canvas id="canvas"></canvas>
+
+</body>
+
+<script>
+window.onload = function(){
+
+  var cv = document.getElementById('canvas');
+  cv.width = 600; cv.height = 600;
+
+  var gl = cv.getContext('webgl');
+  
+  // 指定背景色
+  gl.clearColor( 0, 0, 0, 255 )
+  // 使用背景色清空绘图区
+  gl.clear( gl.COLOR_BUFFER_BIT );
+  
+  // 创建着色器，指定着色器资源，编译着色器
+  var v_shader = initShader('vs');
+  var f_shader = initShader('fs');
+
+  // 初始化程序
+  var program = initProgram( v_shader, f_shader );
+
+  // 准备颜色数据
+  var color = [ 1.0, 0.0, 0.0, 1.0 ]
+
+  // 获取片元着色器的内存位置
+  var uFragColor = gl.getUniformLocation( program, 'uFragColor' );
+
+  // 将颜色信息传递给片元着色器
+  gl.uniform4fv( uFragColor, color )
+
+  // 准备位置数据
+  var position = new Float32Array([
+    0.0, 0.5,
+    -0.5, 0.0,
+    0.5, 0.0
+  ])
+
+  // 获取顶点着色器的内存位置
+  var aPosition = gl.getAttribLocation( program, 'aPosition' );
+
+  // 初始化一个缓冲区
+  var vertexBuffer = createVBO( position );
+
+  // 将缓冲区分配给 attribute 变量
+  gl.vertexAttribPointer( aPosition, 2, gl.FLOAT, false, 0, 0 );
+
+  // 开启 attribute 
+  gl.enableVertexAttribArray( aPosition );
+
+
+  // 准备点的大小信息
+  var size = new Float32Array([ 6.0, 10.0, 14.0 ]);
+
+  // 获取顶点着色器内存位置
+  var aPointSize = gl.getAttribLocation( program, 'aPointSize' );
+
+  // 定义一个缓冲区
+  var sizeBuffer = createVBO( size );
+
+  // 将缓冲区分配给 attribute 变量
+  gl.vertexAttribPointer( aPointSize, 1, gl.FLOAT, false, 0, 0 )
+
+  // 开启 attribute 
+  gl.enableVertexAttribArray( aPointSize );
+
+  // 绘制
+  gl.drawArrays( gl.POINTS, 0, 3 )
+
+  // 初始化着色器的过程
+  function initShader( id ){
+
+    // 判断要创建的着色器类型 gl.VERTEX_SHADER / gl.FRAGMENT_SHADER
+    var ele = document.getElementById(id);
+    var shader;
+
+    switch( ele.type ){
+      case 'x-shader/x-vertex':
+        shader = gl.createShader( gl.VERTEX_SHADER );
+        break;
+
+      case 'x-shader/x-fragment':
+        shader = gl.createShader( gl.FRAGMENT_SHADER );
+        break;
+
+      default: 
+        alert('参数错误'); return;
+    }
+
+    // 指定着色器资源
+    gl.shaderSource( shader, ele.text );
+
+    // 编译着色器
+    gl.compileShader( shader );
+
+    // 检查编译状态
+    if( gl.getShaderParameter( shader, gl.COMPILE_STATUS ) ){
+      return shader;
+    }else {
+      var msg = gl.getShaderInfoLog( shader );
+      alert( 'id:' + id + '，错误信息：' + msg );
+    }
+  }
+
+  // 初始化程序
+  function initProgram(vs, fs){
+
+    // 创建程序
+    var program = gl.createProgram();
+
+    // 为程序对象分配着色器
+    gl.attachShader( program, v_shader );
+    gl.attachShader( program, f_shader );
+
+    // 连接程序对象
+    gl.linkProgram( program )
+
+    // 检查连接是否成功
+    if( gl.getProgramParameter( program, gl.LINK_STATUS ) ){
+      // 将程序设为当前使用
+      gl.useProgram( program );
+      return program;
+    }else {
+      var msg = gl.getProgramInfoLog( program );
+      alert( msg )
+    }
+  }
+
+  // 生成 VBO 顶点着色器缓冲
+  function createVBO( data, position ){
+
+    // 定义一个缓冲区
+    var vbo = gl.createBuffer();
+
+    // 绑定缓冲区
+    gl.bindBuffer(gl.ARRAY_BUFFER, vbo );
+
+    // 向缓冲区写入数据
+    gl.bufferData( gl.ARRAY_BUFFER, data, gl.STATIC_DRAW );
+
+    // 返回生成的 vbo
+    return vbo;
+  }
+
+}
+</script>
+
+</html>
